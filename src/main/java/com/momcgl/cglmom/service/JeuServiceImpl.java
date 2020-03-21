@@ -1,5 +1,6 @@
 package com.momcgl.cglmom.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +9,17 @@ import org.springframework.stereotype.Service;
 import com.momcgl.cglmom.model.Jeu;
 import com.momcgl.cglmom.repository.JeuRepository;
 
+
 @Service
 public class JeuServiceImpl implements JeuService {
-	// Decommenter Autowired, et puis vous aurez le bug consider defining bean qu'il faut resoudre
-	//@Autowired
-	private JeuRepository jeuRepository;
+	
+	public JeuRepository jeuRepository;
 
 	@Override
 	public List<Jeu> findAll() {
-		return (List<Jeu>) jeuRepository.findAll();
+		List<Jeu> jeux = new ArrayList<>();
+		jeuRepository.findAll().forEach(jeux::add);
+		return jeux;
 	}
 
 	@Override

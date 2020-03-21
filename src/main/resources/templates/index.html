@@ -26,7 +26,44 @@
 		</ul>
 		
 		-- Là on met le formulaire pour submit des filtres --  </br>
-		
+		<form action="#" th:action="@{/seedstartermng}" th:object="${seedStarter}" method="post">
+			<p>
+			Jeux:
+			<select>
+				<option></option>
+				<option>j1</option>
+			</select>
+			</p>
+			<p>
+			Types:
+			<select>
+				<option></option>
+				<option>ty1</option>
+			</select>
+			</p>
+			<p>
+			Genres:
+			<select>
+				<option></option>
+				<option>g1</option>
+			</select>
+			</p>
+			<p>
+			Themes:
+			<select>
+				<option></option>
+				<option>th1</option>
+			</select>
+			</p>
+			<p>
+			Editeurs:
+			<select>
+				<option></option>
+				<option>e1</option>
+			</select>
+			</p>
+			<input type="submit" value="Visualiser notes"/>
+		</form>
 		-- Temporaire: accès aux pages -- <br/>
       <a th:href="@{/jeux}">Jeux List</a>
        

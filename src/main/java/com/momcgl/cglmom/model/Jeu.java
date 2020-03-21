@@ -1,6 +1,7 @@
 package com.momcgl.cglmom.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="jeu")
 public class Jeu {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+
+	@Id
 	private Long id;
     
-    @Column(name="nom_jeu")
 	private String nom;
 	//private Type type;
 	//private Genre genre;
