@@ -1,13 +1,27 @@
 package com.momcgl.cglmom.model;
 
-public class Jeu {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="jeu")
+public class Jeu {
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
 	private Long id;
+    
+    @Column(name="nom_jeu")
 	private String nom;
-	private Type type;
-	private Genre genre;
-	private Theme theme;
-	private Editeur editeur;
+	//private Type type;
+	//private Genre genre;
+	//private Theme theme;
+	//private Editeur editeur;
 	
 	
 	public Jeu(Long id, String nom) {
@@ -15,14 +29,14 @@ public class Jeu {
 		this.nom = nom;
 	}
 
-	public Jeu(Long id, String nom, Type type, Genre genre, Theme theme, Editeur editeur) {
+	/*public Jeu(Long id, String nom, Type type, Genre genre, Theme theme, Editeur editeur) {
 		this.id = id;
 		this.nom = nom;
 		this.type = type;
 		this.genre = genre;
 		this.theme = theme;
 		this.editeur = editeur;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -39,7 +53,7 @@ public class Jeu {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
+	/*
 	public Type getType() {
 		return type;
 	}
@@ -71,9 +85,6 @@ public class Jeu {
 	public void setEditeur(Editeur editeur) {
 		this.editeur = editeur;
 	}
-	
-	
-
-	
+	*/
 	
 }
