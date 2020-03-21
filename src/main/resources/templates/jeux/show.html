@@ -6,17 +6,31 @@
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
-      <h1>Person List</h1>
+      <h1>Liste des jeux et leurs notes</h1>
       <br/><br/>
       <div>
          <table border="1">
             <tr>
-               <th>First Name</th>
-               <th>Last Name</th>
+				<th> Id </th>
+				<th> Nom </th>
+				<th> Type </th>
+				<th> Genre </th>
+				<th> Thème </th>
+				<th> Éditeur </th>
+				<th> Age min. </th>
+				<th> Joueurs minimum conseillé </th>
+				<th> Joueurs maximum conseillé </th>
             </tr>
             <tr th:each ="jeu : ${jeux}">
                <td th:utext="${jeu.id}">...</td>
                <td th:utext="${jeu.nom}">...</td>
+               <td>...</td>
+               <td>...</td>
+               <td>...</td>
+               <td>...</td>
+               <td>...</td>
+               <td>...</td>
+               <td>...</td>
             </tr>
          </table>
       </div>

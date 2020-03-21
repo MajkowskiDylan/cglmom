@@ -16,8 +16,19 @@
          would be @{/edit.html}
           
          -->
-          
-      <a th:href="@{/jeux}">Person List</a>  
+         Menu d'édition
+        <ul>
+		<li> <a href="@{/jeux/edit}"> Jeux </a> </li>
+		<li> <a href="@{/types/edit}"> Types </a> </li>
+		<li> <a href="@{/genres/edit}"> Genres </a> </li>
+		<li> <a href="@{/themes/edit}"> Thèmes </a> </li>
+		<li> <a href="@{/editeurs/edit}"> Editeurs </a> </li>
+		</ul>
+		
+		-- Là on met le formulaire qui mène à la page /jeux, pour y voir les notes -- 
+		
+		-- Temporaire: accès aux pages --
+      <a th:href="@{/jeux}">Person List</a>
        
    </body>
     
