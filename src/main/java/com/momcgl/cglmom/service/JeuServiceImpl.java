@@ -13,12 +13,12 @@ import com.momcgl.cglmom.repository.JeuRepository;
 @Service
 public class JeuServiceImpl implements JeuService {
 	
+	@Autowired
 	public JeuRepository jeuRepository;
 
 	@Override
 	public List<Jeu> findAll() {
-		List<Jeu> jeux = new ArrayList<>();
-		jeuRepository.findAll().forEach(jeux::add);
+		List<Jeu> jeux = (List<Jeu>) jeuRepository.findAll();
 		return jeux;
 	}
 
