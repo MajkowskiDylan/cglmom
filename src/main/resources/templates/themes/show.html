@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Liste des thèmes</h1>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+				<th> Nom </th>
+            </tr>
+            <tr th:each ="theme : ${themes}">
+               <td th:utext="${theme.nom_theme}">...</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>
