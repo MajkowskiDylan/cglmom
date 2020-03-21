@@ -31,4 +31,11 @@ public class JeuServiceImpl implements JeuService {
 	public void delete(Jeu jeu) {
 		jeuRepository.delete(jeu);
 	}
+
+	@Override
+	public List<Jeu> findByFilter(Integer id_type, Integer id_genre, Integer theme, Integer editeur, Integer age_minimum,
+			Integer nombre_joueurs_maximum, Integer nombre_joueurs_minimum) {
+		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(id_type, id_genre, theme, editeur, age_minimum, nombre_joueurs_maximum, nombre_joueurs_minimum);
+		return jeux;
+	}
 }

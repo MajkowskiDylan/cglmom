@@ -26,8 +26,7 @@ public class JeuController {
  
     @RequestMapping(value = { "/jeux", "/jeux/show" }, method = RequestMethod.GET)
     public String jeuxList(Model model) {
-    	// avec ça, ça fonctionne pu
-    	List<Jeu> jeux = jeuService.findAll();
+    	List<Jeu> jeux = jeuService.findByFilter(null, null, null, null, null, null, null);
     	
     	model.addAttribute("jeux", jeux);
         return "jeux/show";
