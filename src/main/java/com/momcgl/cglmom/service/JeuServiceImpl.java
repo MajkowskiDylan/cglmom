@@ -1,6 +1,5 @@
 package com.momcgl.cglmom.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +31,4 @@ public class JeuServiceImpl implements JeuService {
 	public void delete(Jeu jeu) {
 		jeuRepository.delete(jeu);
 	}
-
 }
