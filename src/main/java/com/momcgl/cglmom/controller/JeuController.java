@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.momcgl.cglmom.model.Jeu;
-import com.momcgl.cglmom.model.Person;
 
 @Controller
 public class JeuController {
