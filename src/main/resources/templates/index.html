@@ -26,40 +26,33 @@
 		</ul>
 		
 		-- Là on met le formulaire pour submit des filtres --  </br>
-		<form action="#" th:action="@{/seedstartermng}" th:object="${seedStarter}" method="post">
-			<p>
-			Jeux:
-			<select>
-				<option></option>
-				<option>j1</option>
-			</select>
-			</p>
+		<form action="#" th:action="@{/jeux}" th:object="${seedStarter}" method="post">
 			<p>
 			Types:
-			<select>
+			<select id="idType" name="type">
 				<option></option>
-				<option>ty1</option>
+				<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}"> </option>
 			</select>
 			</p>
 			<p>
 			Genres:
-			<select>
+			<select id="idGenre" name="genre">
 				<option></option>
-				<option>g1</option>
+				<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}"></option>
 			</select>
 			</p>
 			<p>
 			Themes:
-			<select>
+			<select id="idTheme" name="theme">
 				<option></option>
-				<option>th1</option>
+				<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}">th1</option>
 			</select>
 			</p>
 			<p>
 			Editeurs:
-			<select>
+			<select id="idEditeur" name="editeur">
 				<option></option>
-				<option>e1</option>
+				<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
 			</select>
 			</p>
 			<input type="submit" value="Visualiser notes"/>
