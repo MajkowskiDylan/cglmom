@@ -9,7 +9,7 @@
       <h1>Ajouter un genre</h1>
       <br/><br/>
       <div>
-      <form>
+		<form th:action="@{/genres/add}" method="post">
          <table>
             <tr>
 				<th> Genre </th>
@@ -18,8 +18,8 @@
                <td> <input type="text" placeholder="Entrez un nom de genre..." value=""/></td>
             </tr>
          </table>
+                 <input type="submit" value="Valider"/>
         </form>
-        <input type="submit" value="Valider"/>
       </div>
       <a href="/"> Retour à l'accueil </a>
    </body>

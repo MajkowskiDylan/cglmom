@@ -9,13 +9,13 @@
       <h1>Ajouter un type</h1>
       <br/><br/>
       <div>
-      <form>
+      <form th:action="@{/types/add}" method="post">
          <table>
             <tr>
 				<th> Type </th>
             </tr>
             <tr>
-               <td> <input type="text" placeholder="Entrez un nom de type..." value=""/></td>
+               <td> <input type="text" name="type" placeholder="Entrez un nom de type..." value=""/></td>
             </tr>
          </table>
          <input type="submit" value="Valider"/>
