@@ -24,10 +24,10 @@ public interface JeuRepository extends JpaRepository<Jeu, Long> {
 			"and (:nombre_joueurs_minimum  is null or game.nombre_joueurs_minimum  = :nombre_joueurs_minimum )"+
 			"and (:nombre_joueurs_maximum  is null or game.nombre_joueurs_maximum  = :nombre_joueurs_maximum )")
     List<Jeu> findByFilter(
-    		@Param("id_type") Integer id_type, 
-    		@Param("id_genre") Integer id_genre,
-            @Param("id_theme") Integer theme, 
-            @Param("id_editeur") Integer editeur,
+    		@Param("id_type") Type type, 
+    		@Param("id_genre") Genre genre,
+            @Param("id_theme") Theme theme, 
+            @Param("id_editeur") Editeur editeur,
             @Param("age_minimum") Integer age_minimum,
             @Param("nombre_joueurs_maximum") Integer nombre_joueurs_maximum,
             @Param("nombre_joueurs_minimum") Integer nombre_joueurs_minimum);

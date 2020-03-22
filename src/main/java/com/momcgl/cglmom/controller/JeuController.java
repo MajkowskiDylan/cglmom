@@ -9,22 +9,38 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.momcgl.cglmom.model.Editeur;
+import com.momcgl.cglmom.model.Genre;
 import com.momcgl.cglmom.model.Jeu;
+import com.momcgl.cglmom.model.Theme;
+import com.momcgl.cglmom.model.Type;
+import com.momcgl.cglmom.service.EditeurService;
+import com.momcgl.cglmom.service.GenreService;
 import com.momcgl.cglmom.service.JeuService;
+import com.momcgl.cglmom.service.ThemeService;
+import com.momcgl.cglmom.service.TypeService;
 
 @Controller
 public class JeuController {
 	
 	@Autowired
-	private JeuService jeuService;
+	private JeuService jeuService;	
+	@Autowired
+	private ThemeService themeService;	
+	@Autowired
+	private GenreService genreService;	
+	@Autowired
+	private TypeService typeService;	
+	@Autowired
+	private EditeurService editeurService;
  
     @RequestMapping(value = "/jeux", method = RequestMethod.POST)
     public String submit(@ModelAttribute("type")String type, @ModelAttribute("genre")String genre, @ModelAttribute("editeur")String editeur, @ModelAttribute("theme")String theme, Model model) {
         
-    	Integer id_type = (type.equals(""))? null :  Integer.parseInt(type);
-    	Integer id_genre = (genre.equals(""))? null : Integer.parseInt(genre);
-    	Integer id_editeur = (editeur.equals(""))? null : Integer.parseInt(editeur);
-    	Integer id_theme = (theme.equals(""))? null : Integer.parseInt(theme);
+    	Type id_type = (type.equals(""))? null :  typeService.findByIdentifier(Integer.parseInt(type));
+    	Genre id_genre = (genre.equals(""))? null : genreService.findByIdentifier(Integer.parseInt(genre));
+    	Editeur id_editeur = (editeur.equals(""))? null : editeurService.findByIdentifier(Integer.parseInt(editeur));
+    	Theme id_theme = (theme.equals(""))? null : themeService.findByIdentifier(Integer.parseInt(theme));
     	
     	List<Jeu> jeux = jeuService.findByFilter(id_type, id_genre, id_theme, id_editeur, null, null, null);
     	model.addAttribute("jeux", jeux);
