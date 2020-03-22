@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.momcgl.cglmom.model.Editeur;
+import com.momcgl.cglmom.model.Genre;
 import com.momcgl.cglmom.model.Jeu;
+import com.momcgl.cglmom.model.Theme;
+import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.repository.JeuRepository;
 
 
@@ -33,9 +37,9 @@ public class JeuServiceImpl implements JeuService {
 	}
 
 	@Override
-	public List<Jeu> findByFilter(Integer id_type, Integer id_genre, Integer theme, Integer editeur, Integer age_minimum,
+	public List<Jeu> findByFilter(Type type, Genre genre, Theme theme, Editeur editeur, Integer age_minimum,
 			Integer nombre_joueurs_maximum, Integer nombre_joueurs_minimum) {
-		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(id_type, id_genre, theme, editeur, age_minimum, nombre_joueurs_maximum, nombre_joueurs_minimum);
+		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(type, genre, theme, editeur, age_minimum, nombre_joueurs_maximum, nombre_joueurs_minimum);
 		return jeux;
 	}
 }
