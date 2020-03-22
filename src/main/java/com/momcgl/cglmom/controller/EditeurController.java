@@ -14,13 +14,17 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Editeur;
 import com.momcgl.cglmom.model.Genre;
+import com.momcgl.cglmom.model.Jeu;
 import com.momcgl.cglmom.service.EditeurService;
+import com.momcgl.cglmom.service.JeuService;
 
 @Controller
 public class EditeurController {
 	
 	@Autowired
 	private EditeurService editeurService;
+	
+	private JeuService jeuService;
  
     @RequestMapping(value = { "/editeurs", "/editeurs/show", "/editeurs/edit" }, method = RequestMethod.GET)
     public String editeursList(Model model) {
@@ -77,7 +81,12 @@ public class EditeurController {
     public RedirectView editeurDelete(Model model, @PathVariable("id") Long id) {
     	try {
     		Editeur editeur = editeurService.findByIdentifier(id);
-        	editeurService.delete(editeur);
+        	List<Jeu> jeux = jeuService.findByFilter(null, null, null, editeur, null, null);
+            for(Jeu j : jeux)
+            {
+                jeuService.delete(j);
+            }
+            editeurService.delete(editeur);
 		}
 		catch(Exception e) {}
     	// Suppresion d'un éditeur = suppression de tous les jeux avec l'editeur là

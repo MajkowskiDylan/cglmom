@@ -161,10 +161,8 @@ public class JeuController {
     @RequestMapping(value = "/jeux/delete/{id}", method = RequestMethod.GET)
     public RedirectView jeuDelete(Model model, @PathVariable("id") Long id) {
     	try {
-    		System.out.println("hrledfekl" + id.toString());
-    		Jeu jeu = jeuService.findByIdentifier((long)id);
+    		Jeu jeu = jeuService.findByIdentifier(id);
         	jeuService.delete(jeu);
-        	// deleteMyGames
 		}
 		catch(Exception e) {}
     	return new RedirectView("/jeux/edit");
