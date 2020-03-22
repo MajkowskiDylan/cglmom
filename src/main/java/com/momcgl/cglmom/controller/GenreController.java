@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Genre;
-import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.service.GenreService;
 
 @Controller
@@ -25,12 +25,10 @@ public class GenreController {
     	
     	// Visibilite des boutons d'edition et suppression
     	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
-    	if(path.equals("/genres/edit"))
-    	{
+    	if(path.equals("/genres/edit")) {
     		model.addAttribute("visibility", "visible");
     	}
-    	else
-    	{
+    	else {
     		model.addAttribute("visibility", "hidden");
     	}
     	
@@ -40,8 +38,7 @@ public class GenreController {
     }
     
     @RequestMapping(value = "/genres/edit/{id}", method = RequestMethod.GET)
-    public String genreEdit(Model model, @PathVariable("id") Long id)
-    {
+    public String genreEdit(Model model, @PathVariable("id") Long id) {
     	Genre genre = genreService.findByIdentifier(id);
     	model.addAttribute("genre", genre);
     	return "genres/edit";
@@ -51,4 +48,14 @@ public class GenreController {
 	public String genreAdd(Model model) {
 		return "genres/add";
 	}
+    
+    @RequestMapping(value = "/genres/delete/{id}", method = RequestMethod.GET)
+    public RedirectView genreDelete(Model model, @PathVariable("id") Long id) {
+    	try {
+        	Genre genre = genreService.findByIdentifier(id);
+        	genreService.delete(genre);
+		}
+		catch(Exception e) {}
+    	return new RedirectView("/genres/edit");
+    }
 }

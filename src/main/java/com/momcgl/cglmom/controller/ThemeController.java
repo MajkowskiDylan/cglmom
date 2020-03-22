@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Theme;
-import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.service.ThemeService;
 
 @Controller
@@ -25,12 +25,10 @@ public class ThemeController {
     	
     	// Visibilite des boutons d'edition et suppression
     	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
-    	if(path.equals("/themes/edit"))
-    	{
+    	if(path.equals("/themes/edit")) {
     		model.addAttribute("visibility", "visible");
     	}
-    	else
-    	{
+    	else {
     		model.addAttribute("visibility", "hidden");
     	}
     	
@@ -40,8 +38,7 @@ public class ThemeController {
     }
     
     @RequestMapping(value = { "/themes/edit/{id}" }, method = RequestMethod.GET)
-    public String themeEdit(Model model, @PathVariable("id") Long id)
-    {
+    public String themeEdit(Model model, @PathVariable("id") Long id) {
     	Theme theme = themeService.findByIdentifier(id);
     	model.addAttribute("theme", theme);
     	return "themes/edit";
@@ -51,4 +48,14 @@ public class ThemeController {
 	public String themeAdd(Model model) {
 		return "themes/add";
 	}
+    
+    @RequestMapping(value = "/themes/delete/{id}", method = RequestMethod.GET)
+    public RedirectView tehmeDelete(Model model, @PathVariable("id") Long id) {
+    	try {
+    		Theme theme = themeService.findByIdentifier(id);
+        	themeService.delete(theme);
+		}
+		catch(Exception e) {}
+    	return new RedirectView("/themes/edit");
+    }
 }
