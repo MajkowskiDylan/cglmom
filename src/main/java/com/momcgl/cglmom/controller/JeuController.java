@@ -1,5 +1,6 @@
 package com.momcgl.cglmom.controller;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class JeuController {
 	private EditeurService editeurService;
  
     @RequestMapping(value = "/jeux", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("type")String type, @ModelAttribute("genre")String genre, @ModelAttribute("editeur")String editeur, @ModelAttribute("theme")String theme, Model model) {
+    public String submit(@ModelAttribute("age_Minimume")String age_Minimume,@ModelAttribute("nombre_de_joueurs")String nombre_de_joueurs,@ModelAttribute("type")String type, @ModelAttribute("genre")String genre, @ModelAttribute("editeur")String editeur, @ModelAttribute("theme")String theme, Model model) {
 
     	
     	Type id_type = (type.equals(""))? null :  typeService.findByIdentifier(Integer.parseInt(type));
@@ -44,11 +45,15 @@ public class JeuController {
     	Editeur id_editeur = (editeur.equals(""))? null : editeurService.findByIdentifier(Integer.parseInt(editeur));
     	Theme id_theme = (theme.equals(""))? null : themeService.findByIdentifier(Integer.parseInt(theme));
     	
-    	List<Jeu> jeux = jeuService.findByFilter(id_type, id_genre, id_theme, id_editeur, null, null, null);
+    	Integer age_Mini = (age_Minimume.equals(""))? null: Integer.parseInt(age_Minimume);
+    	Integer nb_joueurs = (nombre_de_joueurs.equals(""))? null: Integer.parseInt(nombre_de_joueurs);
+    	
+    	List<Jeu> jeux = jeuService.findByFilter(id_type, id_genre, id_theme, id_editeur, age_Mini, nb_joueurs);
     	model.addAttribute("jeux", jeux);
     	model.addAttribute("visibility", "hidden");
         return "jeux/show";
     }
+    
     @RequestMapping(value = { "/jeux/show", "/jeux/edit" }, method = RequestMethod.GET)
     public String genresList(Model model) {
     	
@@ -61,7 +66,7 @@ public class JeuController {
     		model.addAttribute("visibility", "hidden");
     	}
     	
-    	List<Jeu> jeux = jeuService.findByFilter(null, null, null, null, null, null, null);
+    	List<Jeu> jeux = jeuService.findByFilter(null, null, null, null, null, null);
     	model.addAttribute("jeux", jeux);
     	
         return "jeux/show";

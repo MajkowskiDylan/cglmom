@@ -67,6 +67,14 @@
 				<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
 			</select>
 			</p>
+			<p>
+			Age minimume:
+			<input type="text" id="age_Minimume" name="age_Minimume">
+			</p>
+			<p>
+			nombre de joueurs:
+			<input type="text" id="nombre_de_joueurs" name="nombre_de_joueurs">
+			</p>
 			<input type="submit" value="Visualiser notes"/>
 		</form>       
    </body>

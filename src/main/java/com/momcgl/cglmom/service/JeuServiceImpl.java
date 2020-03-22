@@ -38,8 +38,9 @@ public class JeuServiceImpl implements JeuService {
 
 	@Override
 	public List<Jeu> findByFilter(Type type, Genre genre, Theme theme, Editeur editeur, Integer age_minimum,
-			Integer nombre_joueurs_maximum, Integer nombre_joueurs_minimum) {
-		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(type, genre, theme, editeur, age_minimum, nombre_joueurs_maximum, nombre_joueurs_minimum);
+			Integer nombre_joueurs) {
+		System.out.println(nombre_joueurs);
+		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(type, genre, theme, editeur, age_minimum, nombre_joueurs);
 		return jeux;
 	}
 }

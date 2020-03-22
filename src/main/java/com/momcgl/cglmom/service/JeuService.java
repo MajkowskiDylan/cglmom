@@ -13,5 +13,5 @@ public interface JeuService {
 	List<Jeu> findAll();
 	Jeu save(Jeu jeu);
 	void delete(Jeu jeu);
-	List<Jeu> findByFilter(Type type, Genre genre, Theme theme, Editeur editeur, Integer age_minimum, Integer nombre_joueurs_maximum, Integer nombre_joueurs_minimum);
+	List<Jeu> findByFilter(Type type, Genre genre, Theme theme, Editeur editeur, Integer age_minimum, Integer nombre_joueurs);
 }
