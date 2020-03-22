@@ -6,20 +6,39 @@
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
-      <h1>Person List</h1>
-      <a href="addPerson">Add Person</a>
+      <h1>Liste des jeux et leurs notes</h1>
       <br/><br/>
       <div>
-         <table border="1">
+         <a th:style="'visibility:'+${visibility}+';'" th:href="add" > Ajouter </a>
+         <table>
             <tr>
-               <th>First Name</th>
-               <th>Last Name</th>
+				<th> Nom </th>
+				<th> Type </th>
+				<th> Genre </th>
+				<th> Thème </th>
+				<th> Éditeur </th>
+				<th> Age min. </th>
+				<th> Joueurs minimum conseillé </th>
+				<th> Joueurs maximum conseillé </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="jeu : ${jeux}">
-               <td th:utext="${jeu.id}">...</td>
-               <td th:utext="${jeu.nom}">...</td>
+                <td th:utext="${jeu.nom_jeu}">...</td>
+				<td th:utext="${jeu.get_nom_type()}"> Type </td>
+				<td th:utext="${jeu.get_nom_genre()}"> Genre </td>
+				<td th:utext="${jeu.get_nom_theme()}"> Thème </td>
+				<td th:utext="${jeu.get_nom_editeur()}"> Éditeur </td>
+				<td th:utext="${jeu.age_minimum} + ' ans'"> Age min. </td>
+				<td th:utext="${jeu.nombre_joueurs_minimum} + ' Joueurs'"> Joueurs minimum conseillé </td>
+				<td th:utext="${jeu.nombre_joueurs_maximum} + ' Joueurs'"> Joueurs maximum conseillé </td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${jeu.id}" > Editer </a> </td>
+                <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${jeu.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>
    </body>
+         <p>
+      <a href="/"> Retour à l'accueil </a>
+      </p>
 </html>

@@ -6,8 +6,7 @@
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
-      <h1>Welcome</h1>
-      <h2 th:utext="${message}">..!..</h2>
+      <h1>Visualisation de notes de jeux de société</h1>
        
       <!--  
        
@@ -16,9 +15,68 @@
          would be @{/edit.html}
           
          -->
-          
-      <a th:href="@{/jeux}">Person List</a>  
-       
+      <p>
+		<u>Visualisation</u> des pages:
+		<table>
+		<tr>
+		<td> <a th:href="@{/jeux/show}"> Jeux </a> </td>  
+		<td> <a th:href="@{/types}"> Types </a> </td>
+		<td> <a th:href="@{/themes}"> Thèmes </a> </td>
+		<td> <a th:href="@{/genres}"> Genres </a> </td>
+		<td> <a th:href="@{/editeurs}"> Éditeurs </a> </td>
+		</tr>
+		</table>
+      </p>
+      
+        Menu <u>d'édition</u> de la bibliothèque
+        <ul>
+		<li> <a th:href="@{/jeux/edit}"> Jeux </a> </li>
+		<li> <a th:href="@{/types/edit}"> Types </a> </li>
+		<li> <a th:href="@{/genres/edit}"> Genres </a> </li>
+		<li> <a th:href="@{/themes/edit}"> Thèmes </a> </li>
+		<li> <a th:href="@{/editeurs/edit}"> Editeurs </a> </li>
+		</ul>
+		
+		</br>
+		<form action="#" th:action="@{/jeux}" th:object="${seedStarter}" method="post">
+			<p>
+			Types:
+			<select id="idType" name="type">
+				<option></option>
+				<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}"> </option>
+			</select>
+			</p>
+			<p>
+			Genres:
+			<select id="idGenre" name="genre">
+				<option></option>
+				<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}"></option>
+			</select>
+			</p>
+			<p>
+			Themes:
+			<select id="idTheme" name="theme">
+				<option></option>
+				<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}"></option>
+			</select>
+			</p>
+			<p>
+			Editeurs:
+			<select id="idEditeur" name="editeur">
+				<option></option>
+				<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
+			</select>
+			</p>
+			<p>
+			Age minimume:
+			<input type="text" id="age_Minimume" name="age_Minimume">
+			</p>
+			<p>
+			nombre de joueurs:
+			<input type="text" id="nombre_de_joueurs" name="nombre_de_joueurs">
+			</p>
+			<input type="submit" value="Visualiser notes"/>
+		</form>       
    </body>
     
 </html>

@@ -1,0 +1,58 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Jeux - Ajout</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Ajouter un jeu</h1>
+      <br/><br/>
+      <div>
+		<form th:action="@{/jeux/add}" method="post">
+         <table>
+            <tr>
+				<th> Nom </th>
+				<th> Type </th>
+				<th> Genre </th>
+				<th> Thème </th>
+				<th> Éditeur </th>
+				<th> Age minimum </th>
+				<th> Nombre de joueurs minimum conseillé </th>
+				<th> Nombre de joueurs maximum conseillé </th>
+            </tr>
+            <tr>
+               <td> <input type="text" placeholder="Entrez un nom de jeu..." value=""/></td>
+               <td>
+                	<select id="idType" name="type">
+						<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}"> </option>
+					</select>
+			   </td>
+               <td> 
+                	<select id="idGenre" name="genre">
+						<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}"></option>
+					</select>
+			   </td>
+               <td>
+                	<select id="idTheme" name="theme">
+						<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}"></option>
+					</select>
+			   </td>
+               <td>
+                	<select id="idEditeur" name="editeur">
+						<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
+					</select>
+			   </td>
+               <td> <input type="text" placeholder="Entrez un age minimum..." value=""/></td>
+               <td> <input type="text" placeholder="Nombre minimum de joueurs conseillé..." value=""/> </td>
+               <td> <input type="text" placeholder="Nombre maximum de joueurs conseillé..." value=""/> </td>
+            </tr>
+         </table>
+         <input type="submit" value="Valider"/>
+        </form>
+      </div>
+      <p>
+      <a href="/"> Retour à l'accueil </a>
+      </p>
+   </body>
+</html>

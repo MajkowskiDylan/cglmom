@@ -1,0 +1,30 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Thèmes - Édition</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Editer un thème</h1>
+      <h3 th:style="'visibility:'+${modified}+';'" th:utext="${good}"></h3>
+      <br/><br/>
+      <div>
+      <form th:action="@{/themes/edit}" method="post">
+      	<input name="id" type="hidden" th:value="${theme.id}">
+         <table>
+            <tr>
+				<th> Thème </th>
+            </tr>
+            <tr>
+               <td> <input type="text" name="theme" placeholder="Entrez un nom de thème..." th:value="${theme.nom_theme}"/></td>
+            </tr>
+         </table>
+         <input type="submit" value="Valider"/>
+        </form>
+      </div>
+      <p>
+      <a href="/"> Retour à l'accueil </a>
+      </p>
+   </body>
+</html>

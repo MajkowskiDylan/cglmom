@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Liste des editeurs</h1>
+      <br/><br/>
+      <div>
+         <a th:style="'visibility:'+${visibility}+';'" th:href="add" > Ajouter </a>
+         <table>
+            <tr>
+				<th> Éditeur </th>
+								<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
+            </tr>
+            <tr th:each ="editeur : ${editeurs}">
+               <td th:utext="${editeur.nom_editeur}">...</td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${editeur.id}" > Editer </a> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${editeur.id}" > Supprimer </a> </td>
+            </tr>
+         </table>
+      </div>
+      <p>
+      <a href="/"> Retour à l'accueil </a>
+      </p>
+   </body>
+</html>

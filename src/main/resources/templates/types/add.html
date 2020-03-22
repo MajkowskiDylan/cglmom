@@ -1,0 +1,28 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Types - Ajout</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Ajouter un type</h1>
+      <br/><br/>
+      <div>
+      <form th:action="@{/types/add}" method="post">
+         <table>
+            <tr>
+				<th> Type </th>
+            </tr>
+            <tr>
+               <td> <input type="text" name="type" placeholder="Entrez un nom de type..." value=""/></td>
+            </tr>
+         </table>
+         <input type="submit" value="Valider"/>
+        </form>
+      </div>
+      <p>
+      <a href="/"> Retour à l'accueil </a>
+      </p>
+   </body>
+</html>
