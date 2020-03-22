@@ -7,6 +7,7 @@
    </head>
    <body>
       <h1>Éditer un genre</h1>
+      <h3 th:style="'visibility:'+${modified}+';'" th:utext="${good}"></h3>
       <br/><br/>
       <div>
       <form th:action="@{/genres/edit}" method="post">

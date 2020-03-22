@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.momcgl.cglmom.model.Editeur;
 import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.service.TypeService;
 
@@ -33,20 +34,29 @@ public class TypeController {
     	else {
     		model.addAttribute("visibility", "hidden");
     	}
-    	
     	List<Type> types = typeService.findAll();
     	model.addAttribute("types", types);
         return "types/show";
     }
     
     @RequestMapping(value = "/types/edit", method = RequestMethod.POST)
-    public RedirectView submit(@ModelAttribute("type")String nom_type, @ModelAttribute("id")String id, Model model) {
+    public String submit(@ModelAttribute("type")String nom_type, @ModelAttribute("id")String id, Model model) {
     	Long identifier = Long.parseLong(id);
     	Type type = typeService.findByIdentifier(identifier);
     	type.setNom_type(nom_type);
     	typeService.save(type);
+    	
+    	Type type2 = typeService.findByIdentifier(identifier);
+    	model.addAttribute("type", type2);
+    	
+    	if (type.getNom_type().equals(type2.getNom_type()))
+    		model.addAttribute("good", "valeur changée avec succes");
+    	else	
+    		model.addAttribute("good", "echec du changement");
+
+		model.addAttribute("modified", "visible");
     
-        return new RedirectView("/types/edit");
+        return ("/types/edit");
     }
    
     @RequestMapping(value = "/types/edit/{id}", method = RequestMethod.GET)

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Genre;
+import com.momcgl.cglmom.model.Jeu;
 import com.momcgl.cglmom.service.GenreService;
 
 @Controller
@@ -23,7 +24,6 @@ public class GenreController {
  
     @RequestMapping(value = { "/genres", "/genres/show", "/genres/edit" }, method = RequestMethod.GET)
     public String genresList(Model model) {
-    	
     	// Visibilite des boutons d'edition et suppression
     	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
     	if(path.equals("/genres/edit")) {
@@ -39,19 +39,34 @@ public class GenreController {
     }
     
     @RequestMapping(value = "/genres/edit", method = RequestMethod.POST)
-    public RedirectView submit(@ModelAttribute("genre")String nom_genre, @ModelAttribute("id")String id, Model model) {
+    public String submit(@ModelAttribute("genre")String nom_genre, @ModelAttribute("id")String id, Model model) {
+    	
     	Long identifier = Long.parseLong(id);
+    	
     	Genre genre = genreService.findByIdentifier(identifier);
     	genre.setNom_genre(nom_genre);
     	genreService.save(genre);
-    
-        return new RedirectView("/genres/edit");
+    	
+    	Genre genre2 = genreService.findByIdentifier(identifier);
+    	model.addAttribute("genre", genre2);
+    	
+    	if (genre.getNom_genre().equals(genre2.getNom_genre()))
+    		model.addAttribute("good", "valeur changée avec succes");
+    	else	
+    		model.addAttribute("good", "echec du changement");
+
+		model.addAttribute("modified", "visible");
+    	
+        return ("/genres/edit");
     }
     
     @RequestMapping(value = "/genres/edit/{id}", method = RequestMethod.GET)
     public String genreEdit(Model model, @PathVariable("id") Long id) {
     	Genre genre = genreService.findByIdentifier(id);
     	model.addAttribute("genre", genre);
+    	
+    	model.addAttribute("modified", "hidden");
+    	
     	return "genres/edit";
     }
     

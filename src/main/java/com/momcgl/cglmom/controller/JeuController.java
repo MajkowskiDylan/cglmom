@@ -131,7 +131,7 @@ public class JeuController {
         	
         	Jeu jeu2 = jeuService.findByIdentifier(id);
         	if (jeu.equals(jeu2))
-        		model.addAttribute("good", "valeur changer avec succes");
+        		model.addAttribute("good", "valeur changée avec succes");
         	else	
         		model.addAttribute("good", "echec du changement");
 

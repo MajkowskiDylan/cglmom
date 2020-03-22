@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.momcgl.cglmom.model.Genre;
 import com.momcgl.cglmom.model.Theme;
 import com.momcgl.cglmom.service.ThemeService;
 
@@ -40,19 +41,31 @@ public class ThemeController {
     }
     
     @RequestMapping(value = "/themes/edit", method = RequestMethod.POST)
-    public RedirectView submit(@ModelAttribute("theme")String nom_theme, @ModelAttribute("id")String id, Model model) {
+    public String submit(@ModelAttribute("theme")String nom_theme, @ModelAttribute("id")String id, Model model) {
     	Long identifier = Long.parseLong(id);
     	Theme theme = themeService.findByIdentifier(identifier);
     	theme.setNom_theme(nom_theme);
     	themeService.save(theme);
     
-        return new RedirectView("/themes/edit");
+    	Theme theme2 = themeService.findByIdentifier(identifier);
+    	model.addAttribute("theme", theme2);
+    	
+    	if (theme.getNom_theme().equals(theme2.getNom_theme()))
+    		model.addAttribute("good", "valeur changée avec succes");
+    	else	
+    		model.addAttribute("good", "echec du changement");
+
+		model.addAttribute("modified", "visible");
+    	
+        return("/themes/edit");
     }
     
     @RequestMapping(value = { "/themes/edit/{id}" }, method = RequestMethod.GET)
     public String themeEdit(Model model, @PathVariable("id") Long id) {
     	Theme theme = themeService.findByIdentifier(id);
     	model.addAttribute("theme", theme);
+    	
+    	model.addAttribute("modified", "hidden");
     	return "themes/edit";
     }
     

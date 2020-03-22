@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Editeur;
+import com.momcgl.cglmom.model.Genre;
 import com.momcgl.cglmom.service.EditeurService;
 
 @Controller
@@ -39,19 +40,31 @@ public class EditeurController {
     }
     
     @RequestMapping(value = "/editeurs/edit", method = RequestMethod.POST)
-    public RedirectView submit(@ModelAttribute("editeur")String nom_editeur, @ModelAttribute("id")String id, Model model) {
+    public String submit(@ModelAttribute("editeur")String nom_editeur, @ModelAttribute("id")String id, Model model) {
     	Long identifier = Long.parseLong(id);
     	Editeur editeur = editeurService.findByIdentifier(identifier);
     	editeur.setNom_editeur(nom_editeur);
     	editeurService.save(editeur);
+    	
+    	Editeur editeur2 = editeurService.findByIdentifier(identifier);
+    	model.addAttribute("editeur", editeur2);
+    	
+    	if (editeur.getNom_editeur().equals(editeur2.getNom_editeur()))
+    		model.addAttribute("good", "valeur changée avec succes");
+    	else	
+    		model.addAttribute("good", "echec du changement");
+
+		model.addAttribute("modified", "visible");
     
-        return new RedirectView("/editeurs/edit");
+        return ("/editeurs/edit");
     }
     
     @RequestMapping(value = "/editeurs/edit/{id}", method = RequestMethod.GET)
     public String editeurEdit(Model model, @PathVariable("id") Long id) {
     	Editeur editeur = editeurService.findByIdentifier(id);
     	model.addAttribute("editeur", editeur);
+    	
+    	model.addAttribute("modified", "hidden");
     	return "editeurs/edit";
     }
     
