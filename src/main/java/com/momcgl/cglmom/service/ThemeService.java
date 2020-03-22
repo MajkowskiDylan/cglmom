@@ -9,4 +9,5 @@ public interface ThemeService {
 	List<Theme> findAll();
 	Theme save(Theme theme);
 	void delete(Theme theme);
+	Theme findByIdentifier(long identifier);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.momcgl.cglmom.model.Theme;
+import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.repository.ThemeRepository;
 
 
@@ -21,6 +22,12 @@ public class ThemeServiceImpl implements ThemeService {
 		return themes;
 	}
 
+	@Override
+	public Theme findByIdentifier(long identifier) {
+		Theme theme = themeRepository.findByIdentifier(identifier);
+		return theme;
+	}
+	
 	@Override
 	public Theme save(Theme theme) {
 		// TODO Auto-generated method stub

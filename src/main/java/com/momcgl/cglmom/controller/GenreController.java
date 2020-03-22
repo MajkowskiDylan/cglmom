@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.momcgl.cglmom.model.Genre;
+import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.service.GenreService;
 
 @Controller
@@ -38,8 +40,10 @@ public class GenreController {
     }
     
     @RequestMapping(value = "/genres/edit/{id}", method = RequestMethod.GET)
-    public String genreEdit(Model model)
+    public String genreEdit(Model model, @PathVariable("id") Long id)
     {
+    	Genre genre = genreService.findByIdentifier(id);
+    	model.addAttribute("genre", genre);
     	return "genres/edit";
     }
     

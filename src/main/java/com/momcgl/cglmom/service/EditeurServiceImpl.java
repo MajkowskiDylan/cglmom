@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.momcgl.cglmom.model.Editeur;
+import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.repository.EditeurRepository;
 
 @Service
@@ -18,6 +19,12 @@ public class EditeurServiceImpl implements EditeurService {
 	public List<Editeur> findAll() {
 		List<Editeur> editeurs = (List<Editeur>) editeurRepository.findAll();
 		return editeurs;
+	}
+	
+	@Override
+	public Editeur findByIdentifier(Long identifier) {
+		Editeur editeur = editeurRepository.findByIdentifier(identifier);
+		return editeur;
 	}
 
 	@Override
