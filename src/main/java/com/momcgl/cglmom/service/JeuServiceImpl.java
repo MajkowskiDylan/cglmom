@@ -27,7 +27,6 @@ public class JeuServiceImpl implements JeuService {
 
 	@Override
 	public Jeu save(Jeu jeu) {
-		// TODO Auto-generated method stub
 		return jeuRepository.save(jeu);
 	}
 

@@ -40,7 +40,6 @@ public class JeuController {
  
     @RequestMapping(value = "/jeux", method = RequestMethod.POST)
     public String submit(@ModelAttribute("age_Minimume")String age_Minimume,@ModelAttribute("nombre_de_joueurs")String nombre_de_joueurs,@ModelAttribute("type")String type, @ModelAttribute("genre")String genre, @ModelAttribute("editeur")String editeur, @ModelAttribute("theme")String theme, Model model) {
-
     	
     	Type id_type = (type.equals(""))? null :  typeService.findByIdentifier(Integer.parseInt(type));
     	Genre id_genre = (genre.equals(""))? null : genreService.findByIdentifier(Integer.parseInt(genre));
@@ -58,23 +57,6 @@ public class JeuController {
         return "jeux/show";
     }
     
-    /*
-         @RequestMapping(value = "/jeux/edit", method = RequestMethod.POST)
-    public RedirectView submit(
-    		@ModelAttribute("id")String id, 
-    		@ModelAttribute("nom")String nom_jeu, 
-    		@ModelAttribute("type")String type_jeu, 
-    		Model model) {
-    	Long identifier = Long.parseLong(id);
-    	Jeu jeu = jeuService.findByIdentifier(identifier);
-    	jeu.setNom_jeu(nom_jeu);
-    	// Faire pour tous les champs !!
-    	jeuService.save(jeu);
-        return new RedirectView("/jeux/edit");
-    }
-     */
-    
-    
     @RequestMapping(value = { "/jeux/show", "/jeux/edit" }, method = RequestMethod.GET)
     public String genresList(Model model) {
     	
@@ -89,13 +71,27 @@ public class JeuController {
     	
     	List<Jeu> jeux = jeuService.findByFilter(null, null, null, null, null, null);
     	model.addAttribute("jeux", jeux);
-    	
+    	for(Jeu j : jeux)
+    		j.testPresence();
         return "jeux/show";
     }
     
     @RequestMapping(value = "/jeux/edit/{id}", method = RequestMethod.GET)
-    public String jeuEdit(Model model)
+    public String jeuEdit(Model model, @PathVariable("id") Long id,
+    		@ModelAttribute("idc")String idc, 
+    		@ModelAttribute("nom")String nom, 
+    		@ModelAttribute("type")String type, 
+    		@ModelAttribute("genre")String genre, 
+    		@ModelAttribute("theme")String theme, 
+    		@ModelAttribute("editeur")String editeur, 
+    		@ModelAttribute("age_mini")String age_minimum, 
+    		@ModelAttribute("nb_j_maxi")String nb_joueur_maxi, 
+    		@ModelAttribute("nb_j_mini")String nb_joueur_mini)
     {
+    	Jeu jeu = jeuService.findByIdentifier(id);
+        model.addAttribute("jeu", jeu);
+    	jeu.testPresence();
+
     	List<Editeur> editeurs = editeurService.findAll();
         model.addAttribute("editeurs", editeurs);
         
@@ -107,11 +103,36 @@ public class JeuController {
         
         List<Type> types = typeService.findAll();
         model.addAttribute("types", types);
+       
+        if(!idc.equals(""))
+        {
+        	Long identifier = Long.parseLong(idc);
+        	int age_mini = Integer.parseInt(age_minimum);
+        	int nb_j_maxi = Integer.parseInt(nb_joueur_mini);
+        	int nb_j_mini = Integer.parseInt(nb_joueur_maxi);
+        	
+        	Type id_type = typeService.findByIdentifier(Integer.parseInt(type));
+        	Genre id_genre = genreService.findByIdentifier(Integer.parseInt(genre));
+        	Editeur id_editeur = editeurService.findByIdentifier(Integer.parseInt(editeur));
+        	Theme id_theme = themeService.findByIdentifier(Integer.parseInt(theme));
+        	
+        	jeu.setNom_jeu(nom);
+        	jeu.set_editeur(id_editeur);
+        	jeu.set_genre(id_genre);
+        	jeu.set_type(id_type);
+        	jeu.set_theme(id_theme);
+        	jeu.setAge_minimum(age_mini);
+        	jeu.setNombre_joueurs_maximum(nb_j_maxi);
+        	jeu.setNombre_joueurs_minimum(nb_j_mini);
+        	
+        	jeu = jeuService.save(jeu);
+        }
     	return "jeux/edit";
     }
     
     @RequestMapping(value = { "/jeux/add" }, method = RequestMethod.GET)
 	public String jeuAdd(Model model) {
+       	System.out.println("3");
     	List<Editeur> editeurs = editeurService.findAll();
         model.addAttribute("editeurs", editeurs);
         

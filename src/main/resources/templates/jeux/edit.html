@@ -10,6 +10,7 @@
       <br/><br/>
       <div>
       <form>
+      	<input name="idc" type="hidden" th:value="${jeu.id}">
          <table>
             <tr>
 				<th> Nom </th>
@@ -22,30 +23,30 @@
 				<th> Nombre de joueurs maximum conseillé </th>
             </tr>
             <tr>
-               <td> <input type="text" placeholder="Entrez un nom de jeu..." value=""/></td>
+               <td> <input name="nom" type="text" placeholder="Entrez un nom de jeu..." th:value="${jeu.getNom_jeu()}"/></td>
                <td>
-                	<select id="idType" name="type">
-						<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}"> </option>
+                	<select id="idType" name="type" >
+						<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}" th:selected="${jeu.get_type().getId() == types.id}"> </option>
 					</select>
 			   </td>
                <td> 
                 	<select id="idGenre" name="genre">
-						<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}"></option>
+						<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}" th:selected="${jeu.get_genre().getId() == genres.id}"></option>
 					</select>
 			   </td>
                <td>
                 	<select id="idTheme" name="theme">
-						<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}"></option>
+						<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}" th:selected="${jeu.get_theme().getId() == themes.id}"></option>
 					</select>
 			   </td>
                <td>
                 	<select id="idEditeur" name="editeur">
-						<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
+						<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}" th:selected="${jeu.get_editeur().getId() == editeurs.id}"></option>
 					</select>
 			   </td>
-               <td> <input type="text" placeholder="Entrez un age minimum..." value=""/></td>
-               <td> <input type="text" placeholder="Nombre minimum de joueurs conseillé..." value=""/> </td>
-               <td> <input type="text" placeholder="Nombre maximum de joueurs conseillé..." value=""/> </td>
+               <td> <input name="age_mini" type="text" placeholder="Entrez un age minimum..." th:value="${jeu.getAge_minimum()}"/></td>
+               <td> <input name="nb_j_maxi" type="text" placeholder="Nombre minimum de joueurs conseillé..." th:value="${jeu.getNombre_joueurs_maximum()}"/> </td>
+               <td> <input name="nb_j_mini" type="text" placeholder="Nombre maximum de joueurs conseillé..." th:value="${jeu.getNombre_joueurs_minimum()}"/> </td>
             </tr>
          </table>
          <input type="submit" value="Valider"/>
