@@ -23,9 +23,16 @@
 				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="jeu : ${jeux}">
-               <td th:utext="${jeu.nom_jeu}">...</td>
+                <td th:utext="${jeu.nom_jeu}">...</td>
+				<td th:utext="${jeu.get_nom_type()}"> Type </td>
+				<td th:utext="${jeu.get_nom_genre()}"> Genre </td>
+				<td th:utext="${jeu.get_nom_theme()}"> Thème </td>
+				<td th:utext="${jeu.get_nom_editeur()}"> Éditeur </td>
+				<td th:utext="${jeu.age_minimum} + ' ans'"> Age min. </td>
+				<td th:utext="${jeu.nombre_joueurs_minimum} + ' Joueurs'"> Joueurs minimum conseillé </td>
+				<td th:utext="${jeu.nombre_joueurs_maximum} + ' Joueurs'"> Joueurs maximum conseillé </td>
 				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${jeu.id}" > Editer </a> </td>
-               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${jeu.id}" > Supprimer </a> </td>
+                <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${jeu.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>

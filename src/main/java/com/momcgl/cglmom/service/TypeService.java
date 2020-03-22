@@ -7,7 +7,7 @@ import com.momcgl.cglmom.model.Type;
 
 public interface TypeService {
 	List<Type> findAll();
-	Type findByIdentifier(Long identifier);
+	Type findByIdentifier(long identifier);
 	Type save(Type type);
 	void delete(Type type);
 }

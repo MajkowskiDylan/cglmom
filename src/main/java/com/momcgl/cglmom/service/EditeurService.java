@@ -9,5 +9,5 @@ public interface EditeurService {
 	List<Editeur> findAll();
 	Editeur save(Editeur editeur);
 	void delete(Editeur editeur);
-	Editeur findByIdentifier(Long identifier);
+	Editeur findByIdentifier(long identifier);
 }

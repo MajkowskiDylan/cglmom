@@ -21,7 +21,7 @@ public class TypeServiceImpl  implements TypeService{
 	}
 	
 	@Override
-	public Type findByIdentifier(Long identifier) {
+	public Type findByIdentifier(long identifier) {
 		Type type = typeRepository.findByIdentifier(identifier);
 		return type;
 	}
