@@ -51,6 +51,8 @@ public class JeuController {
     	Integer nb_joueurs = (nombre_de_joueurs.equals(""))? null: Integer.parseInt(nombre_de_joueurs);
     	
     	List<Jeu> jeux = jeuService.findByFilter(id_type, id_genre, id_theme, id_editeur, age_Mini, nb_joueurs);
+    	for(Jeu j : jeux)
+    		j.testPresence();
     	model.addAttribute("jeux", jeux);
     	model.addAttribute("visibility", "hidden");
         return "jeux/show";

@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 @Entity
 @Table(name="jeu")
 public class Jeu {
@@ -19,15 +22,19 @@ public class Jeu {
 	String nom_jeu;
 	@ManyToOne(targetEntity = Type.class)
     @JoinColumn(name = "id_type", referencedColumnName = "id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	Type id_type;
 	@ManyToOne(targetEntity = Genre.class)
     @JoinColumn(name = "id_genre", referencedColumnName = "id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	Genre id_genre;
 	@ManyToOne(targetEntity = Theme.class)
     @JoinColumn(name = "id_theme", referencedColumnName = "id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	Theme id_theme;
 	@ManyToOne(targetEntity = Editeur.class)
     @JoinColumn(name = "id_editeur", referencedColumnName = "id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	Editeur id_editeur;
 	@Column
 	int age_minimum;
@@ -36,6 +43,29 @@ public class Jeu {
 	@Column
 	int nombre_joueurs_maximum;
 
+	public void testPresence() {
+		if (id_type == null) {
+			id_type = new Type();
+			id_type.setId((long)-1);
+			id_type.setNom_type("Not_Found");
+		}
+		if (id_genre == null) {
+			id_genre = new Genre();
+			id_genre.setId((long)-1);
+			id_genre.setNom_genre("Not_Found");
+		}
+		if (id_theme == null) {
+			id_theme = new Theme();
+			id_theme.setId((long)-1);
+			id_theme.setNom_theme("Not_Found");
+		}
+		if (id_editeur == null) {
+			id_editeur = new Editeur();
+			id_editeur.setId((long)-1);
+			id_editeur.setNom_editeur("Not_Found");
+		}
+	}
+	
 	public static double calculerNote(String nom_jeu, String type_jeu, String theme_jeu, String genre_jeu, String editeur_jeu, int nnbr1, int nbr2, Object...testeursList) {
 		int llI = 1;
 		--nbr2;
