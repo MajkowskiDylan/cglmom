@@ -75,11 +75,33 @@ public class JeuController {
     @RequestMapping(value = "/jeux/edit/{id}", method = RequestMethod.GET)
     public String jeuEdit(Model model)
     {
+    	List<Editeur> editeurs = editeurService.findAll();
+        model.addAttribute("editeurs", editeurs);
+        
+        List<Genre> genres = genreService.findAll();
+        model.addAttribute("genres", genres);
+        
+        List<Theme> themes = themeService.findAll();
+        model.addAttribute("themes", themes);
+        
+        List<Type> types = typeService.findAll();
+        model.addAttribute("types", types);
     	return "jeux/edit";
     }
     
     @RequestMapping(value = { "/jeux/add" }, method = RequestMethod.GET)
 	public String jeuAdd(Model model) {
+    	List<Editeur> editeurs = editeurService.findAll();
+        model.addAttribute("editeurs", editeurs);
+        
+        List<Genre> genres = genreService.findAll();
+        model.addAttribute("genres", genres);
+        
+        List<Theme> themes = themeService.findAll();
+        model.addAttribute("themes", themes);
+        
+        List<Type> types = typeService.findAll();
+        model.addAttribute("types", types);
 		return "jeux/add";
 	}
 }

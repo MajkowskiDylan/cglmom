@@ -23,10 +23,26 @@
             </tr>
             <tr>
                <td> <input type="text" placeholder="Entrez un nom de jeu..." value=""/></td>
-               <td> <!--  Liste déroulante type --></td>
-               <td> <!--  Liste déroulante genre --></td>
-               <td> <!--  Liste déroulante theme --></td>
-               <td> <!--  Liste déroulante editeur --></td>
+               <td>
+                	<select id="idType" name="type">
+						<option th:each="types : ${types}"  th:value="${types.id}" th:text="${types.nom_type}"> </option>
+					</select>
+			   </td>
+               <td> 
+                	<select id="idGenre" name="genre">
+						<option th:each="genres : ${genres}"  th:value="${genres.id}" th:text="${genres.nom_genre}"></option>
+					</select>
+			   </td>
+               <td>
+                	<select id="idTheme" name="theme">
+						<option th:each="themes : ${themes}"  th:value="${themes.id}" th:text="${themes.nom_theme}"></option>
+					</select>
+			   </td>
+               <td>
+                	<select id="idEditeur" name="editeur">
+						<option th:each="editeurs : ${editeurs}"  th:value="${editeurs.id}" th:text="${editeurs.nom_editeur}"></option>
+					</select>
+			   </td>
                <td> <input type="text" placeholder="Entrez un age minimum..." value=""/></td>
                <td> <input type="text" placeholder="Nombre minimum de joueurs conseillé..." value=""/> </td>
                <td> <input type="text" placeholder="Nombre maximum de joueurs conseillé..." value=""/> </td>
