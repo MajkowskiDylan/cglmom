@@ -18,7 +18,7 @@
             <tr th:each ="editeur : ${editeurs}">
                <td th:utext="${editeur.nom_editeur}">...</td>
 				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${editeur.id}" > Editer </a> </td>
-               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'editeurDelete'+${editeur.id}" value="Supprimer"/> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${editeur.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>

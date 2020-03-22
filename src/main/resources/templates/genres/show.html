@@ -18,7 +18,7 @@
             <tr th:each ="genre : ${genres}">
                <td th:utext="${genre.nom_genre}">...</td>
                <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${genre.id}" > Editer </a> </td>
-               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'genreDelete'+${genre.id}" value="Supprimer"/> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${genre.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>

@@ -20,7 +20,7 @@
             <tr th:each ="type : ${types}">
                <td th:utext="${type.nom_type}">...</td>
                <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${type.id}" > Editer </a> </td>
-               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'typeDelete'+${type.id}" value="Supprimer"/> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${type.id}" > Supprimer </a></td>
             </tr>
          </table>
       </div>

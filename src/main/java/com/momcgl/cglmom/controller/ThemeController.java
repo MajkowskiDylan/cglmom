@@ -25,7 +25,7 @@ public class ThemeController {
     	
     	// Visibilite des boutons d'edition et suppression
     	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
-    	if(path.equals("/types/edit"))
+    	if(path.equals("/themes/edit"))
     	{
     		model.addAttribute("visibility", "visible");
     	}

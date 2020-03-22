@@ -28,13 +28,11 @@ public class TypeServiceImpl  implements TypeService{
 
 	@Override
 	public Type save(Type type) {
-		// TODO Auto-generated method stub
 		return typeRepository.save(type);
 	}
 
 	@Override
 	public void delete(Type type) {
-		// TODO Auto-generated method stub
 		typeRepository.delete(type);
 	}
 }

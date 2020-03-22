@@ -18,7 +18,7 @@
             <tr th:each ="theme : ${themes}">
                <td th:utext="${theme.nom_theme}">...</td>
 				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${theme.id}" > Editer </a> </td>
-				<td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'themeDelete'+${theme.id}" value="Supprimer"/> </td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${theme.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>

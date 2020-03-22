@@ -25,7 +25,7 @@
             <tr th:each ="jeu : ${jeux}">
                <td th:utext="${jeu.nom_jeu}">...</td>
 				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${jeu.id}" > Editer </a> </td>
-               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'jeuDelete'+${jeu.id}" value="Supprimer"/> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'delete/'+${jeu.id}" > Supprimer </a> </td>
             </tr>
          </table>
       </div>

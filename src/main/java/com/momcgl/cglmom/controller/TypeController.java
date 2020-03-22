@@ -53,4 +53,12 @@ public class TypeController {
 	public String typeAdd(Model model) {
 		return "types/add";
 	}
+    
+    @RequestMapping(value = "/types/delete/{id}", method = RequestMethod.GET)
+    public String typeDelete(Model model, @PathVariable("id") Long id)
+    {
+    	Type type = typeService.findByIdentifier(id);
+    	typeService.delete(type);
+    	return "redirect:types/edit";
+    }
 }
