@@ -11,6 +11,7 @@ import com.momcgl.cglmom.model.Type;
 
 public interface JeuService {
 	List<Jeu> findAll();
+	Jeu findByIdentifier(Long identifier);
 	Jeu save(Jeu jeu);
 	void delete(Jeu jeu);
 	List<Jeu> findByFilter(Type type, Genre genre, Theme theme, Editeur editeur, Integer age_minimum, Integer nombre_joueurs);

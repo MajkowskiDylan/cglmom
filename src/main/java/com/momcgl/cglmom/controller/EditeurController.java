@@ -59,4 +59,15 @@ public class EditeurController {
 	public String editeurAdd(Model model) {
 		return "editeurs/add";
 	}
+    
+    @RequestMapping(value = "/editeurs/delete/{id}", method = RequestMethod.GET)
+    public RedirectView editeurDelete(Model model, @PathVariable("id") Long id) {
+    	try {
+    		Editeur editeur = editeurService.findByIdentifier(id);
+        	editeurService.delete(editeur);
+		}
+		catch(Exception e) {}
+    	// Suppresion d'un éditeur = suppression de tous les jeux avec l'editeur là
+    	return new RedirectView("/editeurs/edit");
+    }
 }

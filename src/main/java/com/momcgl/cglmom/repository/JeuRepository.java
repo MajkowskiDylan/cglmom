@@ -11,6 +11,8 @@ import com.momcgl.cglmom.model.*;
 
 @Repository
 public interface JeuRepository extends JpaRepository<Jeu, Long> {
+	@Query("SELECT j FROM Jeu j WHERE " + "j.id = :identifier")
+	Jeu findByIdentifier(Long identifier);
 	
 	@Query(value = "DELETE FROM jeu WHERE id_editeur = ?", nativeQuery = true)
     void deleteByIdEditeur(int idEditeur);

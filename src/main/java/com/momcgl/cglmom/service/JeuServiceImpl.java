@@ -43,4 +43,10 @@ public class JeuServiceImpl implements JeuService {
 		List<Jeu> jeux = (List<Jeu>) jeuRepository.findByFilter(type, genre, theme, editeur, age_minimum, nombre_joueurs);
 		return jeux;
 	}
+
+	@Override
+	public Jeu findByIdentifier(Long identifier) {
+		Jeu jeu = jeuRepository.findByIdentifier(identifier);
+		return jeu;
+	}
 }

@@ -62,7 +62,7 @@ public class ThemeController {
 	}
     
     @RequestMapping(value = "/themes/delete/{id}", method = RequestMethod.GET)
-    public RedirectView tehmeDelete(Model model, @PathVariable("id") Long id) {
+    public RedirectView themeDelete(Model model, @PathVariable("id") Long id) {
     	try {
     		Theme theme = themeService.findByIdentifier(id);
         	themeService.delete(theme);

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Editeur;
 import com.momcgl.cglmom.model.Genre;
@@ -53,6 +55,23 @@ public class JeuController {
     	model.addAttribute("visibility", "hidden");
         return "jeux/show";
     }
+    
+    /*
+         @RequestMapping(value = "/jeux/edit", method = RequestMethod.POST)
+    public RedirectView submit(
+    		@ModelAttribute("id")String id, 
+    		@ModelAttribute("nom")String nom_jeu, 
+    		@ModelAttribute("type")String type_jeu, 
+    		Model model) {
+    	Long identifier = Long.parseLong(id);
+    	Jeu jeu = jeuService.findByIdentifier(identifier);
+    	jeu.setNom_jeu(nom_jeu);
+    	// Faire pour tous les champs !!
+    	jeuService.save(jeu);
+        return new RedirectView("/jeux/edit");
+    }
+     */
+    
     
     @RequestMapping(value = { "/jeux/show", "/jeux/edit" }, method = RequestMethod.GET)
     public String genresList(Model model) {
@@ -104,4 +123,16 @@ public class JeuController {
         model.addAttribute("types", types);
 		return "jeux/add";
 	}
+    
+    @RequestMapping(value = "/jeux/delete/{id}", method = RequestMethod.GET)
+    public RedirectView jeuDelete(Model model, @PathVariable("id") Long id) {
+    	try {
+    		System.out.println("hrledfekl" + id.toString());
+    		Jeu jeu = jeuService.findByIdentifier((long)id);
+        	jeuService.delete(jeu);
+        	// deleteMyGames
+		}
+		catch(Exception e) {}
+    	return new RedirectView("/jeux/edit");
+    }
 }
