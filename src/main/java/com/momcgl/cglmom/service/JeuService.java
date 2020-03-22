@@ -1,9 +1,6 @@
 package com.momcgl.cglmom.service;
 
 import java.util.List;
-
-import org.springframework.data.repository.query.Param;
-
 import com.momcgl.cglmom.model.Jeu;
 
 
