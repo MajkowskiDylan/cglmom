@@ -23,7 +23,7 @@ public class GenreServiceImpl implements GenreService {
 	}
 	
 	@Override
-	public Genre findByIdentifier(Long identifier) {
+	public Genre findByIdentifier(long identifier) {
 		Genre genre = genreRepository.findByIdentifier(identifier);
 		return genre;
 	}

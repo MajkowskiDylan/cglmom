@@ -4,6 +4,8 @@ import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,21 +17,24 @@ public class Jeu {
 	
 	@Column
 	String nom_jeu;
-	@Column
-	int id_type;
-	@Column
-	int id_genre;
-	@Column
-	int id_theme;
-	@Column
-	int id_editeur;
+	@ManyToOne(targetEntity = Type.class)
+    @JoinColumn(name = "id_type", referencedColumnName = "id")
+	Type id_type;
+	@ManyToOne(targetEntity = Genre.class)
+    @JoinColumn(name = "id_genre", referencedColumnName = "id")
+	Genre id_genre;
+	@ManyToOne(targetEntity = Theme.class)
+    @JoinColumn(name = "id_theme", referencedColumnName = "id")
+	Theme id_theme;
+	@ManyToOne(targetEntity = Editeur.class)
+    @JoinColumn(name = "id_editeur", referencedColumnName = "id")
+	Editeur id_editeur;
 	@Column
 	int age_minimum;
 	@Column
 	int nombre_joueurs_minimum;
 	@Column
 	int nombre_joueurs_maximum;
-	
 
 	public static double calculerNote(String nom_jeu, String type_jeu, String theme_jeu, String genre_jeu, String editeur_jeu, int nnbr1, int nbr2, Object...testeursList) {
 		int llI = 1;
@@ -136,29 +141,29 @@ public class Jeu {
 	public void setNom_jeu(String nom_jeu) {
 		this.nom_jeu = nom_jeu;
 	}
-	public int getId_type() {
+	public Type get_type() {
 		return id_type;
 	}
-	public void setId_type(int id_type) {
-		this.id_type = id_type;
+	public void set_type(Type type) {
+		this.id_type = type;
 	}
-	public int getId_genre() {
+	public Genre get_genre() {
 		return id_genre;
 	}
-	public void setId_genre(int id_genre) {
-		this.id_genre = id_genre;
+	public void set_genre(Genre genre) {
+		this.id_genre = genre;
 	}
-	public int getId_theme() {
+	public Theme get_theme() {
 		return id_theme;
 	}
-	public void setId_theme(int id_theme) {
-		this.id_theme = id_theme;
+	public void set_theme(Theme theme) {
+		this.id_theme = theme;
 	}
-	public int getId_editeur() {
+	public Editeur get_editeur() {
 		return id_editeur;
 	}
-	public void setId_editeur(int id_editeur) {
-		this.id_editeur = id_editeur;
+	public void set_editeur(Editeur editeur) {
+		this.id_editeur = editeur;
 	}
 	public int getAge_minimum() {
 		return age_minimum;
@@ -178,4 +183,18 @@ public class Jeu {
 	public void setNombre_joueurs_maximum(int nombre_joueurs_maximum) {
 		this.nombre_joueurs_maximum = nombre_joueurs_maximum;
 	}
+
+    public String get_nom_theme() {
+    	return this.get_theme().getNom_theme();
+    }
+    public String get_nom_genre() {
+    	return this.get_genre().getNom_genre();
+    }
+    public String get_nom_type() {
+    	return this.get_type().getNom_type();
+    }
+    public String get_nom_editeur() {
+    	return this.get_editeur().getNom_editeur();
+    }
 }
+

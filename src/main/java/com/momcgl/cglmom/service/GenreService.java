@@ -9,5 +9,5 @@ public interface GenreService {
 	List<Genre> findAll();
 	Genre save(Genre genre);
 	void delete(Genre genre);
-	Genre findByIdentifier(Long identifier);
+	Genre findByIdentifier(long identifier);
 }

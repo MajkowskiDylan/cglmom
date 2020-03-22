@@ -22,7 +22,7 @@ public class EditeurServiceImpl implements EditeurService {
 	}
 	
 	@Override
-	public Editeur findByIdentifier(Long identifier) {
+	public Editeur findByIdentifier(long identifier) {
 		Editeur editeur = editeurRepository.findByIdentifier(identifier);
 		return editeur;
 	}
