@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.momcgl.cglmom.model.Jeu;
 import com.momcgl.cglmom.model.Type;
 import com.momcgl.cglmom.service.TypeService;
 
@@ -28,12 +27,10 @@ public class TypeController {
     	
     	// Visibilite des boutons d'edition et suppression
     	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
-    	if(path.equals("/types/edit"))
-    	{
+    	if(path.equals("/types/edit")) {
     		model.addAttribute("visibility", "visible");
     	}
-    	else
-    	{
+    	else {
     		model.addAttribute("visibility", "hidden");
     	}
     	
@@ -43,20 +40,17 @@ public class TypeController {
     }
     
     @RequestMapping(value = "/types/edit", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("type")String type, @ModelAttribute("id")String id, Model model) {
-    	
-    	System.out.println(type);
+    public RedirectView submit(@ModelAttribute("type")String nom_type, @ModelAttribute("id")String id, Model model) {
     	Long identifier = Long.parseLong(id);
-    	Type t = typeService.findByIdentifier(identifier);
-    	t.setNom_type(type);
-    	typeService.save(t);
+    	Type type = typeService.findByIdentifier(identifier);
+    	type.setNom_type(nom_type);
+    	typeService.save(type);
     
-        return "/types/edit";
+        return new RedirectView("/types/edit");
     }
    
     @RequestMapping(value = "/types/edit/{id}", method = RequestMethod.GET)
-    public String typeEdit(Model model, @PathVariable("id") Long id)
-    {
+    public String typeEdit(Model model, @PathVariable("id") Long id) {
     	Type type = typeService.findByIdentifier(id);
     	model.addAttribute("type", type);
     	return "types/edit";
@@ -68,8 +62,7 @@ public class TypeController {
 	}
     
     @RequestMapping(value = "/types/delete/{id}", method = RequestMethod.GET)
-    public RedirectView typeDelete(Model model, @PathVariable("id") Long id)
-    {
+    public RedirectView typeDelete(Model model, @PathVariable("id") Long id) {
     	try {
     		Type type = typeService.findByIdentifier(id);
         	typeService.delete(type);

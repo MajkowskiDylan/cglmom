@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import com.momcgl.cglmom.service.ThemeService;
 
 @Controller
 public class ThemeController {
+	
 	
 	@Autowired
 	private ThemeService themeService;
@@ -35,6 +37,16 @@ public class ThemeController {
     	List<Theme> themes = themeService.findAll();
     	model.addAttribute("themes", themes);
         return "themes/show";
+    }
+    
+    @RequestMapping(value = "/themes/edit", method = RequestMethod.POST)
+    public RedirectView submit(@ModelAttribute("theme")String nom_theme, @ModelAttribute("id")String id, Model model) {
+    	Long identifier = Long.parseLong(id);
+    	Theme theme = themeService.findByIdentifier(identifier);
+    	theme.setNom_theme(nom_theme);
+    	themeService.save(theme);
+    
+        return new RedirectView("/themes/edit");
     }
     
     @RequestMapping(value = { "/themes/edit/{id}" }, method = RequestMethod.GET)

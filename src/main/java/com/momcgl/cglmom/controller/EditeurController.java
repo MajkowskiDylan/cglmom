@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.momcgl.cglmom.model.Editeur;
 import com.momcgl.cglmom.service.EditeurService;
@@ -34,6 +36,16 @@ public class EditeurController {
     	List<Editeur> editeurs = editeurService.findAll();
     	model.addAttribute("editeurs", editeurs);
         return "editeurs/show";
+    }
+    
+    @RequestMapping(value = "/editeurs/edit", method = RequestMethod.POST)
+    public RedirectView submit(@ModelAttribute("editeur")String nom_editeur, @ModelAttribute("id")String id, Model model) {
+    	Long identifier = Long.parseLong(id);
+    	Editeur editeur = editeurService.findByIdentifier(identifier);
+    	editeur.setNom_editeur(nom_editeur);
+    	editeurService.save(editeur);
+    
+        return new RedirectView("/editeurs/edit");
     }
     
     @RequestMapping(value = "/editeurs/edit/{id}", method = RequestMethod.GET)
