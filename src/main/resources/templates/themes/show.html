@@ -2,19 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
-      <title>Person List</title>
+      <title>Thèmes - Liste</title>
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
       <h1>Liste des thèmes</h1>
       <br/><br/>
       <div>
-         <table border="1">
+         <table>
             <tr>
 				<th> Nom </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="theme : ${themes}">
                <td th:utext="${theme.nom_theme}">...</td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${theme.id}" > Editer </a> </td>
+				<td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'themeDelete'+${theme.id}" value="Supprimer"/> </td>
             </tr>
          </table>
       </div>

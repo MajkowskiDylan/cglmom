@@ -44,4 +44,15 @@ public class JeuController {
     	model.addAttribute("jeux", jeux);
         return "jeux/show";
     }
+    
+    @RequestMapping(value = "/jeux/edit/{id}", method = RequestMethod.GET)
+    public String jeuEdit(Model model)
+    {
+    	return "jeux/edit";
+    }
+    
+    @RequestMapping(value = { "/jeux/add" }, method = RequestMethod.GET)
+	public String jeuAdd(Model model) {
+		return "jeux/add";
+	}
 }

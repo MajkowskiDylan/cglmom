@@ -1,0 +1,26 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Thèmes - ajout</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Ajouter un thème</h1>
+      <br/><br/>
+      <div>
+      <form>
+         <table>
+            <tr>
+				<th> Thème </th>
+            </tr>
+            <tr>
+               <td> <input type="text" placeholder="Entrez un nom de thème..." value=""/></td>
+            </tr>
+         </table>
+        </form>
+        <input type="submit" value="Valider"/>
+      </div>
+      <a href="/"> Retour à l'accueil </a>
+   </body>
+</html>

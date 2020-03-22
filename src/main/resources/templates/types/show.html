@@ -2,22 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
-      <title>Person List</title>
+      <title>Types - Liste</title>
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
       <h1>Liste des types</h1>
       <br/><br/>
       <div>
-         <table border="1">
+      	<div>
+      	</div>
+         <table>
             <tr>
-				<th> Id </th>
 				<th> Type </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="type : ${types}">
                <td th:utext="${type.nom_type}">...</td>
+               <td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${type.id}" > Editer </a> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'typeDelete'+${type.id}" value="Supprimer"/> </td>
             </tr>
          </table>
       </div>
+      <a href="/"> Retour à l'accueil </a>
    </body>
 </html>

@@ -1,0 +1,26 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Editeurs - Édition</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Éditer un editeur</h1>
+      <br/><br/>
+      <div>
+      <form>
+         <table>
+            <tr>
+				<th> Editeur </th>
+            </tr>
+            <tr>
+               <td> <input type="text" placeholder="Entrez un nom d'editeur..." value=""/></td>
+            </tr>
+         </table>
+         <input type="submit" value="Valider"/>
+        </form>
+      </div>
+      <a href="/"> Retour à l'accueil </a>
+   </body>
+</html>

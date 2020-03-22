@@ -6,8 +6,7 @@
       <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    </head>
    <body>
-      <h1>Welcome</h1>
-      <h2 th:utext="${message}">..!..</h2>
+      <h1>Visualisation de notes de jeux de société</h1>
        
       <!--  
        
@@ -16,16 +15,29 @@
          would be @{/edit.html}
           
          -->
-         Menu d'édition
+      <p>
+		<u>Visualisation</u> des pages:
+		<table>
+		<tr>
+		<td> <a th:href="@{/jeux}"> Jeux </a> </td>  
+		<td> <a th:href="@{/types}"> Types </a> </td>
+		<td> <a th:href="@{/themes}"> Thèmes </a> </td>
+		<td> <a th:href="@{/genres}"> Genres </a> </td>
+		<td> <a th:href="@{/editeurs}"> Éditeurs </a> </td>
+		</tr>
+		</table>
+      </p>
+      
+        Menu <u>d'édition</u> de la bibliothèque
         <ul>
-		<li> <a href="@{/jeux/edit}"> Jeux </a> </li>
-		<li> <a href="@{/types/edit}"> Types </a> </li>
-		<li> <a href="@{/genres/edit}"> Genres </a> </li>
-		<li> <a href="@{/themes/edit}"> Thèmes </a> </li>
-		<li> <a href="@{/editeurs/edit}"> Editeurs </a> </li>
+		<li> <a th:href="@{/jeux/edit}"> Jeux </a> </li>
+		<li> <a th:href="@{/types/edit}"> Types </a> </li>
+		<li> <a th:href="@{/genres/edit}"> Genres </a> </li>
+		<li> <a th:href="@{/themes/edit}"> Thèmes </a> </li>
+		<li> <a th:href="@{/editeurs/edit}"> Editeurs </a> </li>
 		</ul>
 		
-		-- Là on met le formulaire pour submit des filtres --  </br>
+		</br>
 		<form action="#" th:action="@{/jeux}" th:object="${seedStarter}" method="post">
 			<p>
 			Types:
@@ -56,10 +68,7 @@
 			</select>
 			</p>
 			<input type="submit" value="Visualiser notes"/>
-		</form>
-		-- Temporaire: accès aux pages -- <br/>
-      <a th:href="@{/jeux}">Jeux List</a>
-       
+		</form>       
    </body>
     
 </html>

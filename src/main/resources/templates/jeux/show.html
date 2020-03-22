@@ -9,7 +9,7 @@
       <h1>Liste des jeux et leurs notes</h1>
       <br/><br/>
       <div>
-         <table border="1">
+         <table>
             <tr>
 				<th> Nom </th>
 				<th> Type </th>
@@ -19,9 +19,13 @@
 				<th> Age min. </th>
 				<th> Joueurs minimum conseillé </th>
 				<th> Joueurs maximum conseillé </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="jeu : ${jeux}">
                <td th:utext="${jeu.nom_jeu}">...</td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${jeu.id}" > Editer </a> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'jeuDelete'+${jeu.id}" value="Supprimer"/> </td>
             </tr>
          </table>
       </div>

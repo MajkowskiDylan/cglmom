@@ -9,14 +9,19 @@
       <h1>Liste des editeurs</h1>
       <br/><br/>
       <div>
-         <table border="1">
+         <table>
             <tr>
 				<th> Éditeur </th>
+								<th th:style="'visibility:'+${visibility}+';'"> Edition </th>
+				<th th:style="'visibility:'+${visibility}+';'"> Suppression </th>
             </tr>
             <tr th:each ="editeur : ${editeurs}">
                <td th:utext="${editeur.nom_editeur}">...</td>
+				<td th:style="'visibility:'+${visibility}+';'"> <a th:href="'edit/'+${editeur.id}" > Editer </a> </td>
+               <td th:style="'visibility:'+${visibility}+';'"> <input type="submit" th:name="'editeurDelete'+${editeur.id}" value="Supprimer"/> </td>
             </tr>
          </table>
       </div>
+      <a href="/"> Retour à l'accueil </a>
    </body>
 </html>

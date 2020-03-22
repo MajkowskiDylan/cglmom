@@ -25,7 +25,7 @@ public class IndexController {
 	private ThemeService themeService;
 	@Autowired
 	private TypeService typeService;
- 
+
  
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {

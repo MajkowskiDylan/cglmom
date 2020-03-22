@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.momcgl.cglmom.model.Theme;
 import com.momcgl.cglmom.service.ThemeService;
@@ -17,11 +18,33 @@ public class ThemeController {
 	@Autowired
 	private ThemeService themeService;
  
-    @RequestMapping(value = { "/themes", "/themes/show" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/themes", "/themes/show", "/themes/edit" }, method = RequestMethod.GET)
     public String themesList(Model model) {
-    	List<Theme> themes = themeService.findAll();
     	
+    	// Visibilite des boutons d'edition et suppression
+    	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
+    	if(path.equals("/types/edit"))
+    	{
+    		model.addAttribute("visibility", "visible");
+    	}
+    	else
+    	{
+    		model.addAttribute("visibility", "hidden");
+    	}
+    	
+    	List<Theme> themes = themeService.findAll();
     	model.addAttribute("themes", themes);
         return "themes/show";
     }
+    
+    @RequestMapping(value = { "/themes/edit/{id}" }, method = RequestMethod.GET)
+    public String themeEdit(Model model)
+    {
+    	return "themes/edit";
+    }
+    
+    @RequestMapping(value = { "/themes/add" }, method = RequestMethod.GET)
+	public String themeAdd(Model model) {
+		return "themes/add";
+	}
 }

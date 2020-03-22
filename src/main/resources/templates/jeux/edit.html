@@ -1,0 +1,40 @@
+.<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Jeux - Édition</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Édition un jeu</h1>
+      <br/><br/>
+      <div>
+      <form>
+         <table>
+            <tr>
+				<th> Nom </th>
+				<th> Type </th>
+				<th> Genre </th>
+				<th> Thème </th>
+				<th> Éditeur </th>
+				<th> Age minimum </th>
+				<th> Nombre de joueurs minimum conseillé </th>
+				<th> Nombre de joueurs maximum conseillé </th>
+            </tr>
+            <tr>
+               <td> <input type="text" placeholder="Entrez un nom de jeu..." value=""/></td>
+               <td> <!--  Liste déroulante type --></td>
+               <td> <!--  Liste déroulante genre --></td>
+               <td> <!--  Liste déroulante theme --></td>
+               <td> <!--  Liste déroulante editeur --></td>
+               <td> <input type="text" placeholder="Entrez un age minimum..." value=""/></td>
+               <td> <input type="text" placeholder="Nombre minimum de joueurs conseillé..." value=""/> </td>
+               <td> <input type="text" placeholder="Nombre maximum de joueurs conseillé..." value=""/> </td>
+            </tr>
+         </table>
+         <input type="submit" value="Valider"/>
+        </form>
+      </div>
+      <a href="/"> Retour à l'accueil </a>
+   </body>
+</html>
