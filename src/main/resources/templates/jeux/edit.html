@@ -1,4 +1,4 @@
-.<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
@@ -7,6 +7,7 @@
    </head>
    <body>
       <h1>Édition un jeu</h1>
+      <span th:style="'visibility:'+${modified}+';'" th:utext="${good}"></span>
       <br/><br/>
       <div>
       <form>

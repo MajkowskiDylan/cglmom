@@ -226,5 +226,53 @@ public class Jeu {
     public String get_nom_editeur() {
     	return this.get_editeur().getNom_editeur();
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jeu other = (Jeu) obj;
+		if (age_minimum != other.age_minimum)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (id_editeur == null) {
+			if (other.id_editeur != null)
+				return false;
+		} else if (!id_editeur.equals(other.id_editeur))
+			return false;
+		if (id_genre == null) {
+			if (other.id_genre != null)
+				return false;
+		} else if (!id_genre.equals(other.id_genre))
+			return false;
+		if (id_theme == null) {
+			if (other.id_theme != null)
+				return false;
+		} else if (!id_theme.equals(other.id_theme))
+			return false;
+		if (id_type == null) {
+			if (other.id_type != null)
+				return false;
+		} else if (!id_type.equals(other.id_type))
+			return false;
+		if (nom_jeu == null) {
+			if (other.nom_jeu != null)
+				return false;
+		} else if (!nom_jeu.equals(other.nom_jeu))
+			return false;
+		if (nombre_joueurs_maximum != other.nombre_joueurs_maximum)
+			return false;
+		if (nombre_joueurs_minimum != other.nombre_joueurs_minimum)
+			return false;
+		return true;
+	}
 }
 

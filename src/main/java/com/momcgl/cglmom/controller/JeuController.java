@@ -103,7 +103,9 @@ public class JeuController {
         
         List<Type> types = typeService.findAll();
         model.addAttribute("types", types);
-       
+
+		model.addAttribute("modified", "hidden");
+		
         if(!idc.equals(""))
         {
         	Long identifier = Long.parseLong(idc);
@@ -126,6 +128,15 @@ public class JeuController {
         	jeu.setNombre_joueurs_minimum(nb_j_mini);
         	
         	jeu = jeuService.save(jeu);
+        	
+        	Jeu jeu2 = jeuService.findByIdentifier(id);
+        	if (jeu.equals(jeu2))
+        		model.addAttribute("good", "valeur changer avec succes");
+        	else	
+        		model.addAttribute("good", "echec du changement");
+
+    		model.addAttribute("modified", "visible");
+        	
         }
     	return "jeux/edit";
     }
