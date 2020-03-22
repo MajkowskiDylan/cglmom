@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.momcgl.cglmom.model.Editeur;
 import com.momcgl.cglmom.model.Genre;
@@ -36,13 +37,31 @@ public class JeuController {
  
     @RequestMapping(value = "/jeux", method = RequestMethod.POST)
     public String submit(@ModelAttribute("type")String type, @ModelAttribute("genre")String genre, @ModelAttribute("editeur")String editeur, @ModelAttribute("theme")String theme, Model model) {
-        
+
+    	
     	Type id_type = (type.equals(""))? null :  typeService.findByIdentifier(Integer.parseInt(type));
     	Genre id_genre = (genre.equals(""))? null : genreService.findByIdentifier(Integer.parseInt(genre));
     	Editeur id_editeur = (editeur.equals(""))? null : editeurService.findByIdentifier(Integer.parseInt(editeur));
     	Theme id_theme = (theme.equals(""))? null : themeService.findByIdentifier(Integer.parseInt(theme));
     	
     	List<Jeu> jeux = jeuService.findByFilter(id_type, id_genre, id_theme, id_editeur, null, null, null);
+    	model.addAttribute("jeux", jeux);
+    	model.addAttribute("visibility", "hidden");
+        return "jeux/show";
+    }
+    @RequestMapping(value = { "/jeux/show", "/jeux/edit" }, method = RequestMethod.GET)
+    public String genresList(Model model) {
+    	
+    	// Visibilite des boutons d'edition et suppression
+    	String path = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().getPath();
+    	if(path.equals("/jeux/edit")) {
+    		model.addAttribute("visibility", "visible");
+    	}
+    	else {
+    		model.addAttribute("visibility", "hidden");
+    	}
+    	
+    	List<Jeu> jeux = jeuService.findByFilter(null, null, null, null, null, null, null);
     	model.addAttribute("jeux", jeux);
     	
         return "jeux/show";
